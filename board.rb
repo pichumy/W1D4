@@ -1,6 +1,9 @@
 require_relative "tile"
 
 class Board
+
+  attr_reader :grid
+
   def self.empty_grid
     Array.new(9) do
       Array.new(9) { Tile.new(0) }
@@ -53,9 +56,8 @@ class Board
 
   def solved?
     rows.all? { |row| solved_set?(row) } &&
-      columns.all? { |col| solved_set?(col) } &&
-      squares.all? { |square| solved_set?(square) }
-    end
+    columns.all? { |col| solved_set?(col) } &&
+    squares.all? { |square| solved_set?(square) }  
   end
 
   def solved_set?(tiles)
@@ -81,6 +83,6 @@ class Board
     (0..8).to_a.map { |i| square(i) }
   end
 
-  private
-  attr_reader :grid
+
+
 end
